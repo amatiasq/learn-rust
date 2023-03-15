@@ -1,12 +1,20 @@
+use super::data::create_graph;
 use yew::prelude::*;
 
-#[function_component(App)]
-pub fn app() -> Html {
+#[function_component]
+pub fn App() -> Html {
+    let graph = create_graph();
+    let x = graph.nodes.iter().map(|node| {
+        html! {
+            <div>
+                <h1>{node.name}</h1>
+            </div>
+        }
+    });
+
     html! {
         <main>
-            <img class="logo" src="https://yew.rs/img/logo.png" alt="Yew logo" />
-            <h1>{ "Hello Worldfasdfd!" }</h1>
-            <span class="subtitle">{ "from Yew with " }<i class="heart" /></span>
+            {html! { for x }}
         </main>
     }
 }
